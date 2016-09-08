@@ -22,5 +22,5 @@ Projeto de sistema PDV para a disciplina de Desenvolvimento de Software III.
 
 # Mais Informações:
 - **Grails**
-  
-  Requisitos, instruções para rodar e *Getting Started* [aqui](http://docs.grails.org/latest/guide/gettingStarted.html#requirements).
+  - Requisitos, instruções para rodar e *Getting Started* [aqui](http://docs.grails.org/latest/guide/gettingStarted.html#requirements).
+  - [GORM (Object Relational Mapping)](http://docs.grails.org/latest/guide/GORM.html)
