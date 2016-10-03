@@ -1,5 +1,6 @@
 import pdv.Usuario
 import pdv.Papel
+import pdv.UsuarioPapel
 
 class BootStrap {
 
