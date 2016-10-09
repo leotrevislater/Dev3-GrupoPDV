@@ -5,6 +5,8 @@ Projeto de sistema PDV para a disciplina de Desenvolvimento de Software III.
 - Git (com o adicional Git Bash), disponível [aqui](https://git-scm.com/downloads).
 - JDK7 ou mais recente, disponível [aqui](http://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html).
 - Eclipse Mars, disponível [aqui] (https://eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/mars2).
+- MySQL server, disponível [aqui] (https://dev.mysql.com/downloads/mysql/).
+- MySQL workbench, disponível [aqui] (https://dev.mysql.com/downloads/workbench/).
 
 # Instruções Para Configuração:
 1. Fazer download do Grails.
