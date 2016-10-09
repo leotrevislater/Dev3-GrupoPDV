@@ -9,7 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <asset:stylesheet src="application.css"/>
-
+	<asset:stylesheet src="style.css"/>
+	<asset:stylesheet src="style.scss"/>
+	
     <g:layoutHead/>
 </head>
 <body>
