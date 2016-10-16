@@ -4,7 +4,7 @@ class LoginController {
 	//def scaffold = Usuario
 	
 	def index() {
-		render(view: "login")
+		render(view: "index")
 	}
 	
 	def autenticar() {
@@ -17,7 +17,7 @@ class LoginController {
 		}
 		else{
 		  flash.message = "Usuario ou senha incorreto. Por favor, tente novamente."
-		  redirect(action:"login")
+			render(view: "index")
 		}
 	  }
 
