@@ -17,6 +17,11 @@ dataSource:
 
 environments:
     development:
+        grails:
+            plugin:
+                databasemigration:
+                    updateOnStart: true
+                    updateOnStartFileName: 'changelog.xml'
         dataSource:
             dbCreate: "update"
             url: "jdbc:mysql://localhost/pdv"
@@ -28,7 +33,7 @@ environments:
         
     production:
         dataSource:
-            dbCreate: update
+            dbCreate: create
             url: "jdbc:mysql://localhost/pdv"
             properties:
                 jmxEnabled: true

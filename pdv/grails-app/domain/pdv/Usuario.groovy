@@ -9,14 +9,8 @@ class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1
 
-	transient springSecurityService
-
 	String username
 	String password
-	boolean enabled = true
-	boolean accountExpired
-	boolean accountLocked
-	boolean passwordExpired
 
 	Usuario(String username, String password) {
 		this()
@@ -24,11 +18,7 @@ class Usuario implements Serializable {
 		this.password = password
 	}
 
-	Set<Papel> getAuthorities() {
-		UsuarioPapel.findAllByUsuario(this)*.papel
-	}
-
-	def beforeInsert() {
+	/*def beforeInsert() {
 		encodePassword()
 	}
 
@@ -40,9 +30,7 @@ class Usuario implements Serializable {
 
 	protected void encodePassword() {
 		password = springSecurityService?.passwordEncoder ? springSecurityService.encodePassword(password) : password
-	}
-
-	static transients = ['springSecurityService']
+	}*/
 
 	static constraints = {
 		username blank: false, unique: true
