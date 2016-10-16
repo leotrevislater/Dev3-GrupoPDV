@@ -1,6 +1,4 @@
 import pdv.Usuario
-import pdv.Papel
-import pdv.UsuarioPapel
 
 class BootStrap {
 
@@ -8,13 +6,9 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        def userRole = new Papel('ROLE_USER').save()
-
         def me = new Usuario('usr', '123').save()
 
-        UsuarioPapel.create me, userRole
-
-        UsuarioPapel.withSession {
+        Usuario.withSession {
             it.flush()
             it.clear()
         }

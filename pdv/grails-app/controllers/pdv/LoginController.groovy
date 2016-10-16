@@ -1,15 +1,16 @@
 package pdv
 
-class UsuarioController {
+class LoginController {
 	//def scaffold = Usuario
 	
-	def login() {}
+	def index() {
+		render(view: "login")
+	}
 	
 	def autenticar() {
 
 		def usuario = Usuario.findByUsernameAndPassword(params.username, params.password)
 		if(usuario != null){
-			System.out.println('Ecoto')
 			session.setAttribute("user", usuario)
 			flash.message = "Hello ${usuario.getUsername()}!"
 			redirect(controller:"entry", action:"login")

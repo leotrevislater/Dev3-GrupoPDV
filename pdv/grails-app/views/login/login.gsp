@@ -18,7 +18,7 @@
       <g:if test="${flash.message}">
         <div class="message">${flash.message}</div>
       </g:if>
-      <g:form controller="usuario" action="autenticar" method="post" >
+      <g:form controller="login" action="autenticar" method="post" >
         <p><g:field type="text" name="username" value="${usuario?.username}" placeholder="Usuário"/></p>
         <p><g:field type="password" name="password" value="${usuario?.password}" placeholder="Senha"/></p>
 
