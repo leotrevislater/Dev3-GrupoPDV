@@ -12,8 +12,9 @@ class LoginController {
 		def usuario = Usuario.findByUsernameAndPassword(params.username, params.password)
 		if(usuario != null){
 			session.setAttribute("user", usuario)
+			session.user = usuario
 			flash.message = "Hello ${usuario.getUsername()}!"
-			redirect(controller:"entry", action:"login")
+			render(view: "home")
 		}
 		else{
 		  flash.message = "Usuario ou senha incorreto. Por favor, tente novamente."
@@ -22,8 +23,6 @@ class LoginController {
 	  }
 
 	def logout() {
-		flash.message = "Goodbye ${session.user.username}"
-		session.user = null
-		redirect(controller:"entry", action:"login")
+		render(view: "../logout")
 	}
 }
