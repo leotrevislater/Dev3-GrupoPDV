@@ -43,7 +43,7 @@
 					<g:link action="logout">Logout</g:link>
 				</p>
 				<p class="submit">
-					<g:link action="bloquear">Bloquear</g:link>
+					<g:link controller="bloqueio" action="index">Bloquear</g:link>
 				</p>
 
 			</div>

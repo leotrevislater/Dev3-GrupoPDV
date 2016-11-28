@@ -2,11 +2,10 @@ package pdv
 
 class LogoutController {
 	
-	
-	
+
 	def sair() {
 		flash.message = ""
-		session.user = null
+		session.removeAttribute('user')
 		redirect(controller:"login", action:"index")
 		render(view: "../login/index")
 	}

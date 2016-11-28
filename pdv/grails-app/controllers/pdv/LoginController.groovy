@@ -1,8 +1,7 @@
 package pdv
 
 class LoginController {
-	//def scaffold = Usuario
-	
+
 	def index() {
 		render(view: "index")
 	}
