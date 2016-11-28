@@ -5,7 +5,12 @@ import javax.websocket.Session;
 class BloqueioController {
 	
 	def index() {
-		render(view: "../bloqueio")
+		if(session.getAttribute('user') == null) {
+			redirect(controller: 'login', action: 'index')
+		}
+		else {
+			render(view: "../bloqueio")
+		}
 	}
 	
 	def desbloquear() {
