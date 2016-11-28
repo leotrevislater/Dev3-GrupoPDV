@@ -20,7 +20,7 @@ class BloqueioController {
 		def usuarioSessao = session.getAttribute('user')
 
 		if(usuario != null && usuario.id == usuarioSessao.id){
-			flash.message = "Olá ${usuario.getUsername()}!"
+			flash.message = "Bem-vindo, ${usuario.getUsername()}!"
 			redirect(controller:"home", action:"index")
 			render(controller:'login', action: 'index')
 		}

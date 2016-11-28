@@ -12,7 +12,7 @@ class LoginController {
 		if(usuario != null){
 			session.setAttribute("user", usuario)
 			session.user = usuario
-			flash.message = "Hello ${usuario.getUsername()}!"
+			flash.message = "Bem-vindo, ${usuario.getUsername()}!"
 			render(view: "home")
 		}
 		else{
