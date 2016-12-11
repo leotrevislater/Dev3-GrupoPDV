@@ -14,4 +14,9 @@ class Produto {
 
     Moeda moeda
 
+    @Override
+    public String toString() {
+        return "${descricao} R\$ ${valor}"
+    }
+
 }
