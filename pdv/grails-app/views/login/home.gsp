@@ -14,6 +14,9 @@
 <asset:stylesheet src="style.css" />
 <asset:stylesheet src="style.scss" />
 <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 
 <body>
@@ -29,7 +32,7 @@
 
 			<div style="display: inline; width: 20%; text-align: right; float: right;">
 		   		<p class="submit"> <g:link action="logout">Logout</g:link> </p>
-		 	  	<p class="submit"> <g:link controller="bloqueio" action="index">Bloquear</g:link> </p>
+		 	  	<p class="submit"> <g:link elementId="link-bloqueio" controller="bloqueio" action="index">Bloquear</g:link> </p>
 			</div>
 		</header>
 
@@ -41,7 +44,7 @@
 			<table style="width:80%">
 			  <tr>
 			    <th style="width: 40%; text-align: left;">Produto/Preço</th>
-			    <th style="width: 20%; text-align: left;"">Quantidade</th> 
+			    <th style="width: 20%; text-align: left;">Quantidade</th>
 			    <th style="width: 20%;"></th>
 			  </tr>
 			  <tr>
@@ -53,6 +56,10 @@
 		</section>
 
 		<br><br><br>
+
+		<div id="dialog-confirm" title="Bloquear o Caixa?">
+			<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Se estiver realizando uma venda, os produtos selecionados serão perdidos. Tem certeza que deseja bloquear o caixa?</p>
+		</div>
 
 		<section>
 			<table bgcolor="white" style="width:100%; overflow-y: auto; height-max: 50px " >
@@ -73,13 +80,40 @@
 		<br/><br/>
 
 		<label>Valor Total da Compra</label>
-		<p> R$ <span id="valor-total-compra">0,00</span>
+		<p> R$ <span id="valor-total-compra">0.00</span>
 		</p>
+
+		<br/><br/>
+
+		<button onclick="finalizarVenda()" type="button">Finalizar Venda</button>
 
 	</div>
 	</div>
 
 	<g:javascript>
+
+		$( function() {
+
+			var dialog = $("#dialog-confirm").dialog({
+				autoOpen: false,
+				height: "auto",
+				width: 400,
+				modal: true,
+				buttons: {
+					"Bloquear": function () {
+						window.location.href = $("#link-bloqueio").attr('href');
+					},
+					"Cancelar": function () {
+						dialog.dialog("close");
+					}
+				}
+			});
+
+			$("#link-bloqueio").on("click", function () {
+				dialog.dialog("open");
+				return false;
+			});
+		});
 
 		function incluirProduto() {
 
@@ -118,10 +152,15 @@
 			var valorCompra = document.getElementById('valor-total-compra').innerHTML;
 			console.log('valorCompra', valorCompra)
 			valorCompra = parseInt(valorCompra) + parseInt(valorTotalInclusaoProduto);
-			
-			valorCompra = parseFloat(Math.round(valorCompra * 100) / 100).toFixed(2); 
-			
+
+			valorCompra = parseFloat(Math.round(valorCompra * 100) / 100).toFixed(2);
+
 			document.getElementById('valor-total-compra').innerHTML = valorCompra;
+		}
+
+		function finalizarVenda() {
+			$("#corpo-tabela tr").remove();
+			var valorCompra = document.getElementById('valor-total-compra').innerHTML = '0.00';
 		}
 		
 	</g:javascript>
