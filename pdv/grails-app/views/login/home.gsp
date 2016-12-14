@@ -23,7 +23,7 @@
 	<%@ page import="pdv.Produto"%>
 	<% def produtos = Produto.list() %>
 
-	<div class="container">
+	<div class="container" style="border: 2px groove; border-color: gray; background-color: #f3f3f3; padding: 35px">
 		<header>
 			<div style="display: inline; width: 80%; float: left;">
 		   		<h1> <g:if test="${flash.message}"> <div class="message"> ${flash.message} </div> </g:if> </h1>
@@ -61,7 +61,7 @@
 			<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Se estiver realizando uma venda, os produtos selecionados serão perdidos. Tem certeza que deseja bloquear o caixa?</p>
 		</div>
 
-		<section>
+		<div style="height: 125px; overflow-y: scroll; border: 1px solid; background-color: azure;">
 			<table bgcolor="white" style="width:100%; overflow-y: auto; height-max: 50px " >
 				<thead>
 				  <tr>
@@ -72,10 +72,10 @@
 				  </tr>
 				</thead>
 			
-				<tbody id="corpo-tabela" >
+				<tbody id="corpo-tabela" style="background-color: azure;">
 				</tbody>
 			</table>
-		</section>
+		</div>
 
 		<br/><br/>
 
@@ -85,15 +85,18 @@
 
 		<br/><br/>
 
-		<button onclick="finalizarVenda()" type="button">Finalizar Venda</button>
-
-	</div>
+		<button onclick="finalizarVenda()" id="link-venda" type="button">Finalizar Venda</button>
+		
+		<div id="dialog-confirm-venda" title="Finalizar Venda">
+			<p><span style="float:left; margin:12px 12px 20px 0;">
+				<p> Valor total da compra R$ <span id="valor-total-compra-dialog">0.00</span>
+			</p>
+		</div>
 	</div>
 
 	<g:javascript>
 
 		$( function() {
-
 			var dialog = $("#dialog-confirm").dialog({
 				autoOpen: false,
 				height: "auto",
@@ -114,9 +117,32 @@
 				return false;
 			});
 		});
+		
+		$( function() {
+				var dialog = $("#dialog-confirm-venda").dialog({
+					autoOpen: false,
+					height: "auto",
+					width: 400,
+					modal: true,
+					buttons: {
+						"Confirmar Venda": function () {
+							$("#corpo-tabela tr").remove();
+							var valorCompra = document.getElementById('valor-total-compra').innerHTML = '0.00';
+							dialog.dialog("close");
+						},
+						"Voltar": function () {
+							dialog.dialog("close");
+						},
+					}
+				});
+		
+				$("#link-venda").on("click", function () {
+					dialog.dialog("open");
+					return false;
+				});
+		});
 
 		function incluirProduto() {
-
 			var selectProduto = document.getElementById('produto')
 			var descricaoProdutoSelecionado = selectProduto.options[selectProduto.selectedIndex].text
 			descricaoProdutoSelecionado = descricaoProdutoSelecionado.substr(0, descricaoProdutoSelecionado.indexOf('R$'));
@@ -159,9 +185,10 @@
 		}
 
 		function finalizarVenda() {
-			$("#corpo-tabela tr").remove();
-			var valorCompra = document.getElementById('valor-total-compra').innerHTML = '0.00';
+			var a = document.getElementById('valor-total-compra').innerHTML;
+			document.getElementById('valor-total-compra-dialog').innerHTML = a;
 		}
+		
 		
 	</g:javascript>
 
