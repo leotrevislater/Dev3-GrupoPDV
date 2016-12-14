@@ -136,10 +136,11 @@
 
 			var valorCompra = document.getElementById('valor-total-compra').innerHTML;
 			console.log('valorCompra', valorCompra)
-			valorCompra += valorTotalInclusaoProduto;
+			valorCompra = parseInt(valorCompra) + parseInt(valorTotalInclusaoProduto);
+			
 			document.getElementById('valor-total-compra').innerHTML = valorCompra;
 		}
-
+		
 	</g:javascript>
 
 </body>
