@@ -6,6 +6,6 @@
         <tagDatabase tag="start"/>
     </changeSet>
 
-    <include file="version-1/changes.xml" relativeToChangelogFile="true"/>
+    <!--<include file="version-1/changes.xml" relativeToChangelogFile="true"/>-->
 
 </databaseChangeLog>
